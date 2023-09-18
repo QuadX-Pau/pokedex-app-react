@@ -34,23 +34,28 @@ const App = () => {
   return (
     <div className="app-container">
       <div className="topbar-container">
-        <h1>Pokédex</h1>
+        <h1 className="topbar-title">Pokédex</h1>
       </div>
       <div className="pokemon-container">
         <div className="all-container">
           
           {allPokemons.map( (pokemonStats, index) => 
-          <button className= "card-button">
             <PokeCard
               key={index}
-              id={pokemonStats.id}
+              id={pokemonStats.id.toString().padStart(3, "0")}
               image={pokemonStats.sprites.other.dream_world.front_default}
               name={pokemonStats.name}
               type={pokemonStats.types[0].type.name}
+              weight={pokemonStats.weight}
+              height={pokemonStats.height}
+              stats={pokemonStats.stats
+                .map((stat) => stat.base_stat)
+                .slice(0,3)}
+              statsName={pokemonStats.stats
+                .map((stat) => stat.stat.name)
+                .slice(0,3)}
             />
-            </button>
             )}
-          
         </div>
 
           <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>

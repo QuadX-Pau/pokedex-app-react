@@ -1,18 +1,34 @@
 import React from 'react';
 
-const PokeCard = ({id, image, name, type, _callback }) => {
+const PokeCard = ({id, image, name, type, weight, height, stats, statsName, _callback }) => {
     const style = type + " card-container";
     return (
         <div className={style}>
-            <div className="number"><small>#0{id}</small></div>
+            <div className="number"><strong>#{id}</strong></div>
             <img src={image} alt={name} />
             <div className="detail-wrapper">
-                <h3>{name}</h3>
-                <small>Type: {type}</small>
+                <h2>{name}</h2>
+                <small><strong>Type:</strong> {type}</small>
+                <small><strong>Weight:</strong> {weight} lbs</small>
+                <small><strong>Height:</strong> {height} cm</small>
+                <table className="stats-container">
+                    <tr>
+                        {statsName.map((stats) => (
+                        <th><small>{stats}</small></th>
+                    ))}
+                    </tr>
+                    <tr>
+                    {stats.map((stats) => (
+                        <td><small>{stats}</small></td>
+                    ))}
+                    </tr>
+                </table>
+                    
+                
             </div>
         </div>
     )
 }
 
 
-export default PokemonThumb
+export default PokeCard
